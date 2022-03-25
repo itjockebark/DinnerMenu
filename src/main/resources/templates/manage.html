@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Veckans Meny</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.1/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container text-center">
+    <h1>Manage</h1>
+</div>
+
+<div class="container text-center">
+    <a class="h4" th:href="@{/manage/add_dish/}">Add New Dish</a>
+    <br/>
+    <a class="h4" th:href="@{/manage/add_ingredient/}">Add New Ingredient</a>
+    <br/>
+    <a class="h4" th:href="@{/manage/connect/}">Connect</a>
+</div>
+<table class="table table-bordered">
+    <thead class="table-dark">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Vegetarian</th>
+        <th>Ingredients</th>
+        <th>Operations</th>
+    </tr>
+    </thead>
+    <tbody class="table-light">
+    <th:block th:each="dish : ${dishlist}">
+        <tr>
+            <td th:text="${dish.id}"></td>
+            <td th:text="${dish.name}"></td>
+            <td th:text="${dish.vegetarian}"></td>
+            <td th:text="${dish.ingredients}"></td>
+
+            <td>
+                <a class="h4 m-3" th:href="@{'/manage/update/' + ${dish.id}}">Update</a>
+                <a class="h4 m-3" th:href="@{'/manage/delete/' + ${dish.id}}">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+
+<br/>
+<br/>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Operations</th>
+    </tr>
+    </thead>
+    <tbody class="table-light">
+    <th:block th:each="ingredient : ${ingredientlist}">
+        <tr>
+            <td th:text="${ingredient.id}"></td>
+            <td th:text="${ingredient.name}"></td>
+
+            <td>
+                <a class="h4 m-3" th:href="@{'/manage/update/' + ${ingredient.id}}">Update</a>
+                <a class="h4 m-3" th:href="@{'/manage/delete/' + ${ingredient.id}}">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>

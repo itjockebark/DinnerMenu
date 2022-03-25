@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.1/css/bootstrap.min.css}">
+</head>
+<body>
+<form th:action="@{/manage/savedish}" method="post" th:object="${dish}">
+
+    <div>
+        <label>Name</label>
+        <input required th:field="${dish.name}"/>
+    </div>
+
+    <div>
+        <label>Vegetarian</label>
+        <select th:field="${dish.vegetarian}">
+            <option th:value="1" >Yes</option>
+            <option th:value="0" >No</option>
+        </select>
+    </div>
+
+    <div>
+        <button type="submit">Save</button>
+    </div>
+</form>
+<a th:href="@{/manage}">Cancel</a>
+</body>
+</html>
