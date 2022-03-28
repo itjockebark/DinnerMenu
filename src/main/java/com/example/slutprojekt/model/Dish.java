@@ -18,12 +18,22 @@ public class Dish {
     @Column(nullable = false)
     private boolean vegetarian = false;
 
-    @ManyToMany(mappedBy = "dishes", cascade = CascadeType.PERSIST)
+    private Integer likes = 0;
+
+    @ManyToMany(mappedBy = "dishes", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     List<Ingredient> ingredients = new ArrayList<>();
 
     public void addIngredient(Ingredient ingredient) {
         ingredients.add(ingredient);
         ingredient.getDishes().add(this);
+    }
+
+    public void like() {
+        likes++;
+    }
+
+    public void dislike() {
+        likes--;
     }
 
     public Dish() {
@@ -32,6 +42,14 @@ public class Dish {
     public Dish(String name, boolean vegetarian) {
         this.name = name;
         this.vegetarian = vegetarian;
+    }
+
+    public Integer getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
     }
 
     public String getName() {
@@ -65,4 +83,6 @@ public class Dish {
     public Integer getId() {
         return id;
     }
+
+
 }

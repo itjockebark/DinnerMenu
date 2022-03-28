@@ -2,6 +2,11 @@ package com.example.slutprojekt.dao;
 
 import com.example.slutprojekt.model.Dish;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface DishDAO extends JpaRepository<Dish, Integer> {
+
+
 }

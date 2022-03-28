@@ -11,9 +11,9 @@
 </div>
 
 <div class="container text-center">
-    <a class="h4" th:href="@{/manage/add_dish/}">Add New Dish</a>
+    <a class="h4" th:href="@{/manage/dish_form/}">Add New Dish</a>
     <br/>
-    <a class="h4" th:href="@{/manage/add_ingredient/}">Add New Ingredient</a>
+    <a class="h4" th:href="@{/manage/ingredient_form/}">Add New Ingredient</a>
     <br/>
     <a class="h4" th:href="@{/manage/connect/}">Connect</a>
 </div>
@@ -24,6 +24,7 @@
         <th>Name</th>
         <th>Vegetarian</th>
         <th>Ingredients</th>
+        <th>Likes</th>
         <th>Operations</th>
     </tr>
     </thead>
@@ -32,12 +33,22 @@
         <tr>
             <td th:text="${dish.id}"></td>
             <td th:text="${dish.name}"></td>
-            <td th:text="${dish.vegetarian}"></td>
-            <td th:text="${dish.ingredients}"></td>
 
+            <div th:if="${dish.vegetarian}">
+            <td th:text="Yes"></td>
+            </div>
+
+            <div th:unless="${dish.vegetarian}">
+                <td th:text="No"></td>
+            </div>
+
+            <td th:text="${dish.ingredients}"></td>
+            <td th:text="${dish.likes}"></td>
             <td>
-                <a class="h4 m-3" th:href="@{'/manage/update/' + ${dish.id}}">Update</a>
-                <a class="h4 m-3" th:href="@{'/manage/delete/' + ${dish.id}}">Delete</a>
+                <a class="h4 m-3" th:href="@{'/manage/updatedish/' + ${dish.id}}">Update</a>
+                <a class="h4 m-3" th:href="@{'/manage/deletedish/' + ${dish.id}}">Delete</a>
+                <a class="h4 m-3" th:href="@{'/manage/updatelikes/' + ${dish.id}}">Like</a>
+                <a class="h4 m-3" th:href="@{'/manage/updatedislikes/' + ${dish.id}}">Dislike</a>
             </td>
         </tr>
     </th:block>
@@ -62,8 +73,8 @@
             <td th:text="${ingredient.name}"></td>
 
             <td>
-                <a class="h4 m-3" th:href="@{'/manage/update/' + ${ingredient.id}}">Update</a>
-                <a class="h4 m-3" th:href="@{'/manage/delete/' + ${ingredient.id}}">Delete</a>
+                <a class="h4 m-3" th:href="@{'/manage/updateingredient/' + ${ingredient.id}}">Update</a>
+                <a class="h4 m-3" th:href="@{'/manage/deleteingredient/' + ${ingredient.id}}">Delete</a>
             </td>
         </tr>
     </th:block>

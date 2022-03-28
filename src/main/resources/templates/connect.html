@@ -10,7 +10,8 @@
 <body>
 
 <h2>Select Option Example 1</h2>
-<form method='POST'>
+<form method="post">
+
     <table>
         <tr>
             <td>Select Dish:</td>
@@ -18,7 +19,7 @@
                 <select th:field="*{savedish}">
                     <option value=""> -- </option>
                     <option th:each="dish : ${dishlist}"
-                            th:value="${dish.id}"
+                            th:value="${dish}"
                             th:utext="${dish.name}"/>
                 </select>
             </td>
@@ -27,15 +28,16 @@
                 <select th:field="*{saveingredient}">
                     <option value=""> -- </option>
                     <option th:each="ingredient : ${ingredientlist}"
-                            th:value="${ingredient.id}"
+                            th:value="${ingredient}"
                             th:utext="${ingredient.name}"/>
                 </select>
             </td>
         </tr>
         <tr>
-            <td><input name="Connect" type="submit" value="submit" /></td>
+            <td><input name="Connect" type="submit" value="Submit" /></td>
         </tr>
     </table>
+
 </form>
 </body>
 </html>

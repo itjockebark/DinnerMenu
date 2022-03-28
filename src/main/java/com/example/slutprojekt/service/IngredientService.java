@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IngredientService {
@@ -20,5 +21,18 @@ public class IngredientService {
 
     public void save(Ingredient ingredient) {
         dao.save(ingredient);
+    }
+
+    public void deleteById(Integer id) {
+        dao.deleteById(id);
+    }
+
+    public Ingredient get(Integer id) {
+        Optional<Ingredient> ingredient = dao.findById(id);
+        if (ingredient.isPresent()) {
+            return ingredient.get();
+        } else {
+            return null;
+        }
     }
 }
