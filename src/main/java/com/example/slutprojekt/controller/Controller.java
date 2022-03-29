@@ -1,7 +1,6 @@
 package com.example.slutprojekt.controller;
 
 import com.example.slutprojekt.model.Dish;
-import com.example.slutprojekt.model.DishAndIngredient;
 import com.example.slutprojekt.model.Ingredient;
 import com.example.slutprojekt.service.DishService;
 import com.example.slutprojekt.service.IngredientService;
