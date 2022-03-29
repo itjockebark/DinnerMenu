@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weekly Menu</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.1/css/bootstrap.min.css}">
+</head>
+<body>
+<br/>
+
+<h1 class="text-center">Weekly Menu</h1>
+
+<br/>
+<table class="table table-bordered" style="max-width: 1500px; margin: auto">
+    <thead class="table-dark">
+    <tr>
+        <th>Name</th>
+        <th>Vegetarian</th>
+        <th>Ingredients</th>
+        <th>Likes</th>
+    </tr>
+    </thead>
+    <tbody class="table-light">
+    <th:block th:each="dish : ${dishes}">
+        <tr>
+            <td th:text="${dish.name}"></td>
+
+            <div th:if="${dish.vegetarian}">
+                <td th:text="Yes"></td>
+            </div>
+
+            <div th:unless="${dish.vegetarian}">
+                <td th:text="No"></td>
+            </div>
+
+            <td th:text="${dish.ingredients}"></td>
+            <td th:text="${dish.likes}"></td>
+        </tr>
+
+    </th:block>
+    </tbody>
+</table>
+<br/>
+<div class="border border-secondary p-4 rounded" style="max-width: 250px; margin: 0 auto">
+    <h2>Inköpslista</h2>
+    <div th:each="ingredient : ${ingredients}">
+        <p th:text="${ingredient}"></p>
+    </div>
+</div>
+<div style="margin-left: 125px">
+    <a class="h4" th:href="@{/}">Home</a>
+</div>
+</body>
+</html>

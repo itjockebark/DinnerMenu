@@ -2,30 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dish Form</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.1/css/bootstrap.min.css}">
 </head>
 <body>
-<form th:action="@{/manage/savedish}" method="post" th:object="${dish}">
+<br/>
+<form th:action="@{/manage/savedish}" method="post" style="max-width: 500px; margin: 0 auto">
     <input type="hidden" th:field="${dish.id}"/>
-    <div>
-        <label>Name</label>
-        <input required th:field="${dish.name}"/>
-    </div>
+    <div class="border border-secondary p-4 rounded">
+        <div class="mb-3">
+            <label class="h5" style="font-weight: bold">Name</label>
+            <input required th:field="${dish.name}"/>
+        </div>
 
-    <div>
-        <label>Vegetarian</label>
-        <select th:field="${dish.vegetarian}">
-            <option th:value="1" >Yes</option>
-            <option th:value="0" >No</option>
-        </select>
+        <div class="mb-3">
+            <label class="h5" style="font-weight: bold">Vegetarian</label>
+            <select th:field="${dish.vegetarian}">
+                <option th:value="1">Yes</option>
+                <option th:value="0">No</option>
+            </select>
+        </div>
+        <div>
+            <label class="h5" style="font-weight: bold">Ingredient</label>
+            <th:block th:each="ingredient : ${ingredientlist}">
+                <div>
+                    <input type="checkbox" th:field="*{dish.ingredients}" th:text="${ingredient.name}"
+                           th:value="${ingredient.id}"/>
+                </div>
+            </th:block>
+        </div>
+        <br/>
+        <div>
+            <button class="btn btn-primary mb-1" type="submit">Save</button>
+        </div>
     </div>
-
-    <div>
-        <button type="submit">Save</button>
-    </div>
+    <a class="h4" th:href="@{/manage}" >Cancel</a>
 </form>
-
-<a th:href="@{/manage}">Cancel</a>
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.example.slutprojekt.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Table(name = "dishes")
 @Entity
@@ -37,6 +38,12 @@ public class Dish {
     }
 
     public Dish() {
+    }
+
+    public Dish(String name, boolean vegetarian, List<Ingredient> ingredients) {
+        this.name = name;
+        this.vegetarian = vegetarian;
+        this.ingredients = ingredients;
     }
 
     public Dish(String name, boolean vegetarian) {

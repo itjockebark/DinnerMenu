@@ -34,20 +34,23 @@ public class Controller {
 
     @GetMapping("/manage/dish_form")
     public String addDish(Model model) {
+        List<Ingredient> ingredients = ingredientService.getAllIngredients();
+        model.addAttribute("ingredientlist", ingredients);
         model.addAttribute("dish", new Dish());
         return "dish_form";
+    }
+
+    @PostMapping("/manage/savedish")
+    public String saveDish(Dish dish) {
+        //dish.addIngredients(ingredients);
+        dishService.save(dish);
+        return "redirect:/manage";
     }
 
     @GetMapping("/manage/ingredient_form")
     public String addIngredient(Model model) {
         model.addAttribute("ingredient", new Ingredient());
         return "ingredient_form";
-    }
-
-    @PostMapping("/manage/savedish")
-    public String saveDish(Dish dish) {
-        dishService.save(dish);
-        return "redirect:/manage";
     }
 
     @PostMapping("/manage/saveingredient")
@@ -70,6 +73,8 @@ public class Controller {
 
     @GetMapping("/manage/updatedish/{id}")
     public String updateDish(@PathVariable("id") Integer id, Model model) {
+        List<Ingredient> ingredients = ingredientService.getAllIngredients();
+        model.addAttribute("ingredientlist", ingredients);
         Dish dish = dishService.getById(id);
         model.addAttribute("dish",dish);
         
@@ -98,25 +103,16 @@ public class Controller {
         return "ingredient_form";
     }
 
+    @GetMapping("weekly_menu")
+    public String showWeeklyMenu(Model model) {
+        List<Dish> dishes = dishService.randomMenu();
 
+        model.addAttribute("dishes", dishes);
 
-    @GetMapping("/manage/connect")
-    public String connect(Model model) {
-        List<Dish> dishes = dishService.getAllDishes();
-        List<Ingredient> ingredients = ingredientService.getAllIngredients();
+        List<Ingredient> ingredients = dishService.ingredientList(dishes);
 
-        model.addAttribute("dishlist",dishes);
-        model.addAttribute("ingredientlist",ingredients);
-
-        model.addAttribute("dishAndIngredient", new DishAndIngredient());
-        return "/manage/connect/save";
-    }
-
-    @PostMapping("/manage/connect/save")
-    public String connectDishWithIngredient(Model model, DishAndIngredient dishAndIngredient) {
-        System.out.println(dishAndIngredient);
-
-        return "redirect:/manage";
+        model.addAttribute("ingredients", ingredients);
+        return "weekly_menu";
     }
 
 }

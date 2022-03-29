@@ -10,8 +10,7 @@
 <body>
 
 <h2>Select Option Example 1</h2>
-<form method="post">
-
+<form>
     <table>
         <tr>
             <td>Select Dish:</td>
@@ -19,7 +18,7 @@
                 <select th:field="*{savedish}">
                     <option value=""> -- </option>
                     <option th:each="dish : ${dishlist}"
-                            th:value="${dish}"
+                            th:value="${dish.id}"
                             th:utext="${dish.name}"/>
                 </select>
             </td>
@@ -28,7 +27,7 @@
                 <select th:field="*{saveingredient}">
                     <option value=""> -- </option>
                     <option th:each="ingredient : ${ingredientlist}"
-                            th:value="${ingredient}"
+                            th:value="${ingredient.id}"
                             th:utext="${ingredient.name}"/>
                 </select>
             </td>
