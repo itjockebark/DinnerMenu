@@ -26,6 +26,7 @@ public class Controller {
     public String findAllDishes(Model model) {
         List<Dish> dishes = dishService.getAllDishes();
         List<Ingredient> ingredients = ingredientService.getAllIngredients();
+
         model.addAttribute("dishlist",dishes);
         model.addAttribute("ingredientlist",ingredients);
         return "manage";

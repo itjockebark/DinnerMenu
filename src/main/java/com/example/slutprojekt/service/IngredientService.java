@@ -1,6 +1,7 @@
 package com.example.slutprojekt.service;
 
 import com.example.slutprojekt.dao.IngredientDAO;
+import com.example.slutprojekt.model.Dish;
 import com.example.slutprojekt.model.Ingredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,10 @@ public class IngredientService {
         dao.save(ingredient);
     }
 
+
     public void deleteById(Integer id) {
+        Ingredient ingredient = dao.getById(id);
+        ingredient.getDishes().forEach(dish -> dish.getIngredients().remove(ingredient));
         dao.deleteById(id);
     }
 

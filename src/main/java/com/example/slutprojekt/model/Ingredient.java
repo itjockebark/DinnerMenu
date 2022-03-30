@@ -15,7 +15,7 @@ public class Ingredient {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "ingredients", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "ingredients", cascade = CascadeType.PERSIST)
     List<Dish> dishes = new ArrayList<>();
 
     public void addDish(Dish dish) {

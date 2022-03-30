@@ -95,5 +95,10 @@ public class Dish {
         return id;
     }
 
-
+    @Override
+    public String toString() {
+        return "Dish{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
