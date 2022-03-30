@@ -21,7 +21,7 @@ public class Dish {
 
     private Integer likes = 0;
 
-    @ManyToMany(mappedBy = "dishes", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany()
     List<Ingredient> ingredients = new ArrayList<>();
 
     public void addIngredient(Ingredient ingredient) {
@@ -38,6 +38,10 @@ public class Dish {
     }
 
     public Dish() {
+    }
+
+    public Dish(String name) {
+        this.name = name;
     }
 
     public Dish(String name, boolean vegetarian, List<Ingredient> ingredients) {

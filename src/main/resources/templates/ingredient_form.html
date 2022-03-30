@@ -2,25 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Ingredient Form</title>
+    <title>[[${pagetitle}]]</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.1/css/bootstrap.min.css}">
+    <link href="https://fonts.googleapis.com/css?family=Rancho&effect=fire-animation" rel="stylesheet">
 </head>
 <body>
 <br/>
-<form th:action="@{/manage/saveingredient}" method="post" th:object="${ingredient}" style="max-width: 500px; margin: 0 auto">
+<div class="h2 text-center font-effect-fire-animation">
+    <h1>[[${pagetitle}]]</h1>
+</div>
+<br/>
+<form th:action="@{/manage/saveingredient}" method="post" th:object="${ingredient}"
+      style="max-width: 500px; margin: 0 auto">
 
     <div class="border border-secondary p-4 rounded">
-    <input type="hidden" th:field="${ingredient.id}"/>
-    <div class="mb-3">
-        <label class="h5" style="font-weight: bold">Name</label>
-        <input required th:field="${ingredient.name}"/>
-    </div>
+        <input type="hidden" th:field="${ingredient.id}"/>
+        <div class="mb-3">
+            <label class="h5" style="font-weight: bold">Name</label>
+            <input required th:field="${ingredient.name}"/>
+        </div>
 
-    <div>
-        <button class="btn btn-primary mb-1" type="submit">Save</button>
+        <div>
+            <button class="btn btn-primary mb-1" type="submit">Save</button>
+        </div>
     </div>
-    </div>
-    <a class="h4" th:href="@{/manage}" >Cancel</a>
+    <a class="h4" th:href="@{/manage}">Cancel</a>
 </form>
 
 </body>

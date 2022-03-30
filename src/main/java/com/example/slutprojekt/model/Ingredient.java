@@ -3,7 +3,6 @@ package com.example.slutprojekt.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Table(name = "ingredients")
 @Entity
@@ -16,25 +15,12 @@ public class Ingredient {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @ManyToMany()
+    @ManyToMany(mappedBy = "ingredients", cascade = CascadeType.ALL)
     List<Dish> dishes = new ArrayList<>();
 
     public void addDish(Dish dish) {
         dishes.add(dish);
         dish.getIngredients().add(this);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ingredient that = (Ingredient) o;
-        return id.equals(that.id) && name.equals(that.name) && dishes.equals(that.dishes);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, dishes);
     }
 
     public Ingredient() {

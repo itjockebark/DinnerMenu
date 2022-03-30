@@ -8,5 +8,4 @@ import java.util.List;
 
 public interface DishDAO extends JpaRepository<Dish, Integer> {
 
-
 }

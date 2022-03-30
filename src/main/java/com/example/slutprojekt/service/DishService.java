@@ -21,8 +21,9 @@ public class DishService {
         return dao.findAll();
     }
 
-    public void save(Dish dish) {
-        dao.save(dish);
+    public Dish save(Dish dish) {
+        Dish savedDish = dao.save(dish);
+        return savedDish;
     }
 
     public void deleteById(Integer id) {

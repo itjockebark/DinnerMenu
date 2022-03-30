@@ -35,13 +35,13 @@ public class Controller {
     public String addDish(Model model) {
         List<Ingredient> ingredients = ingredientService.getAllIngredients();
         model.addAttribute("ingredientlist", ingredients);
+        model.addAttribute("pagetitle", "Add new dish");
         model.addAttribute("dish", new Dish());
         return "dish_form";
     }
 
     @PostMapping("/manage/savedish")
     public String saveDish(Dish dish) {
-        //dish.addIngredients(ingredients);
         dishService.save(dish);
         return "redirect:/manage";
     }
@@ -49,6 +49,7 @@ public class Controller {
     @GetMapping("/manage/ingredient_form")
     public String addIngredient(Model model) {
         model.addAttribute("ingredient", new Ingredient());
+        model.addAttribute("pagetitle","Add new ingredient");
         return "ingredient_form";
     }
 
@@ -64,6 +65,7 @@ public class Controller {
         return "redirect:/manage";
     }
 
+
     @GetMapping("/manage/deleteingredient/{id}")
     public String deleteIngredient(@PathVariable("id") Integer id) {
         ingredientService.deleteById(id);
@@ -76,7 +78,8 @@ public class Controller {
         model.addAttribute("ingredientlist", ingredients);
         Dish dish = dishService.getById(id);
         model.addAttribute("dish",dish);
-        
+        model.addAttribute("pagetitle","Update dish");
+
         return "dish_form";
     }
 
@@ -98,6 +101,7 @@ public class Controller {
     public String updateIngredient(@PathVariable("id") Integer id, Model model) {
         Ingredient ingredient = ingredientService.get(id);
         model.addAttribute("ingredient", ingredient);
+        model.addAttribute("pagetitle","Update ingredient");
 
         return "ingredient_form";
     }
@@ -113,5 +117,8 @@ public class Controller {
         model.addAttribute("ingredients", ingredients);
         return "weekly_menu";
     }
+
+
+
 
 }

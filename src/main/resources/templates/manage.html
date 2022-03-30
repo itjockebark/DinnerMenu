@@ -5,7 +5,6 @@
     <title>Manage</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.1/css/bootstrap.min.css}">
 
-
 </head>
 <body>
 <div class="container text-center">
@@ -35,6 +34,8 @@
         <tr>
             <td th:text="${dish.id}"></td>
             <td th:text="${dish.name}"></td>
+
+
 
             <div th:if="${dish.vegetarian}">
             <td th:text="Yes"></td>
